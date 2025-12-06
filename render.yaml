@@ -22,12 +22,14 @@ services:
   - type: web
     name: ms-usuarios
     env: docker
-    dockerContext: ./microservicos/user_microsservice/usuarios
-    dockerfilePath: ./microservicos/user_microsservice/usuarios/Dockerfile
+    # REMOVI O "/usuarios" DO FINAL DAS DUAS LINHAS ABAIXO:
+    dockerContext: ./microservicos/user_microsservice
+    dockerfilePath: ./microservicos/user_microsservice/Dockerfile
     plan: free
     envVars:
       - key: SERVER_PORT
         value: "8081"
+      # Não esqueça de vincular o Environment Group do Banco de Dados no painel
       # Configure o Banco de Dados via "Environment Groups" no painel
 
   # 3. Catálogo (Porta 8084)
