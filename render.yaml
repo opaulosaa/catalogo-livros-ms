@@ -1,94 +1,84 @@
 services:
-  # 1. Frontend
+  # 1. Frontend (React)
   - type: web
     name: livraria-frontend
     env: docker
-    dockerContext: ./frontend # CORREÇÃO: Mudou de 'context' para 'dockerContext'
+    dockerContext: ./frontend
     dockerfilePath: ./frontend/Dockerfile
     plan: free
     envVars:
+      # O Render não fornece URL pública no build.
+      # Você deverá atualizar estes valores no Dashboard após o deploy.
       - key: VITE_API_USERS
-        fromService: # CORREÇÃO: Agora é um objeto estruturado
-          type: web
-          name: ms-usuarios
-          property: url
+        value: "https://URL_DO_MS_USUARIOS_AQUI"
       - key: VITE_API_CATALOG
-        fromService:
-          type: web
-          name: ms-catalogo
-          property: url
+        value: "https://URL_DO_MS_CATALOGO_AQUI"
       - key: VITE_API_PAYMENT
-        fromService:
-          type: web
-          name: ms-pagamento
-          property: url
+        value: "https://URL_DO_MS_PAGAMENTO_AQUI"
       - key: VITE_API_NOTIFICATION
-        fromService:
-          type: web
-          name: ms-notificacao
-          property: url
+        value: "https://URL_DO_MS_NOTIFICACAO_AQUI"
 
-  # 2. Usuários
+  # 2. Usuários (Porta 8081)
   - type: web
     name: ms-usuarios
     env: docker
-    dockerContext: ./microservicos/user_microsservice/usuarios # CORREÇÃO: 'dockerContext'
+    dockerContext: ./microservicos/user_microsservice/usuarios
     dockerfilePath: ./microservicos/user_microsservice/usuarios/Dockerfile
     plan: free
     envVars:
       - key: SERVER_PORT
-        value: "8080"
-      # Lembre-se de configurar as variáveis de Banco de Dados via "Environment Groups" no painel
+        value: "8081"
+      # Configure o Banco de Dados via "Environment Groups" no painel
 
-  # 3. Catálogo
+  # 3. Catálogo (Porta 8084)
   - type: web
     name: ms-catalogo
     env: docker
-    dockerContext: ./microservicos/catalogo_livros # CORREÇÃO: 'dockerContext'
+    dockerContext: ./microservicos/catalogo_livros
     dockerfilePath: ./microservicos/catalogo_livros/Dockerfile
     plan: free
     envVars:
       - key: SERVER_PORT
-        value: "8080"
+        value: "8084"
       - key: USUARIOS_HOST
         fromService:
           type: web
           name: ms-usuarios
-          property: url
+          property: host # <--- CORRIGIDO: Usa nome interno
       - key: PAGAMENTO_HOST
         fromService:
           type: web
           name: ms-pagamento
-          property: url
+          property: host # <--- CORRIGIDO
 
-  # 4. Pagamento
+  # 4. Pagamento (Porta 8082)
   - type: web
     name: ms-pagamento
     env: docker
-    dockerContext: ./microservicos/spring.boot.ms.pagamento # CORREÇÃO: 'dockerContext'
+    dockerContext: ./microservicos/spring.boot.ms.pagamento
     dockerfilePath: ./microservicos/spring.boot.ms.pagamento/Dockerfile
     plan: free
     envVars:
       - key: SERVER_PORT
-        value: "8080"
+        value: "8082"
       - key: NOTIFICACAO_HOST
         fromService:
           type: web
           name: ms-notificacao
-          property: url
+          property: host # <--- CORRIGIDO
 
-  # 5. Notificação
+  # 5. Notificação (Porta 8083)
   - type: web
     name: ms-notificacao
     env: docker
-    dockerContext: ./microservicos/AV3_catalogolivro_notification # CORREÇÃO: 'dockerContext'
+    dockerContext: ./microservicos/AV3_catalogolivro_notification
     dockerfilePath: ./microservicos/AV3_catalogolivro_notification/Dockerfile
     plan: free
     envVars:
       - key: SERVER_PORT
-        value: "8080"
+        value: "8083"
       - key: USUARIOS_HOST
         fromService:
           type: web
           name: ms-usuarios
-          property: url
+          property: host # <--- CORRIGIDO
