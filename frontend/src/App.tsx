@@ -92,7 +92,7 @@ function App() {
     <div className="min-h-screen flex bg-slate-50 text-slate-800 font-sans">
       {/* Sidebar */}
       <aside className="w-64 bg-white border-r border-slate-200 p-6 flex flex-col fixed h-full shadow-sm z-10">
-        <h1 className="text-2xl font-bold text-blue-600 mb-10 flex items-center gap-2">
+        <h1 className="text-2xl font-bold text-slate-800 mb-10 flex items-center gap-2">
           <BookOpen className="w-8 h-8" /> Livraria MS
         </h1>
 
@@ -125,7 +125,7 @@ function App() {
             Usuário Logado
           </label>
           <select
-            className="w-full mt-2 p-2.5 border border-slate-300 rounded-md text-sm bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none"
+            className="w-full mt-2 p-2.5 border border-slate-300 rounded-md text-sm bg-slate-50 focus:ring-2 focus:ring-slate-500 outline-none"
             onChange={handleUserChange}
             value={selectedUser ?? ""}
           >
@@ -162,7 +162,7 @@ function App() {
 
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20 opacity-50">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-slate-600 mb-4"></div>
             <p>Conectando aos microsserviços...</p>
           </div>
         ) : (
@@ -190,7 +190,7 @@ function App() {
                       <p className="text-sm text-slate-500 font-medium">
                         {book.autor}
                       </p>
-                      <span className="inline-block mt-2 px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-md font-semibold">
+                      <span className="inline-block mt-2 px-2 py-1 bg-slate-50 text-slate-700 text-xs rounded-md font-semibold">
                         {book.categoria}
                       </span>
                     </div>
@@ -200,7 +200,7 @@ function App() {
                       </span>
                       <button
                         onClick={() => handleBuy(book.id, book.preco)}
-                        className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-blue-700 active:bg-blue-800 transition-colors shadow-md shadow-blue-200 cursor-pointer"
+                        className="bg-slate-600 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-slate-700 active:bg-slate-800 transition-colors shadow-md shadow-slate-200 cursor-pointer"
                       >
                         <ShoppingCart size={16} /> Comprar
                       </button>
@@ -270,7 +270,7 @@ function App() {
                     {users.map((user) => (
                       <tr
                         key={user.id}
-                        className="border-b border-slate-100 hover:bg-blue-50/50 transition-colors last:border-0"
+                        className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors last:border-0"
                       >
                         <td className="p-4 text-slate-500 font-mono text-sm">
                           #{user.id}
@@ -309,7 +309,7 @@ function TabButton({ icon, label, active, onClick }: TabButtonProps) {
       onClick={onClick}
       className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 font-medium text-sm cursor-pointer ${
         active
-          ? "bg-blue-50 text-blue-700 shadow-sm"
+          ? "bg-slate-50 text-slate-700 shadow-sm"
           : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
       }`}
     >
