@@ -9,10 +9,10 @@ $baseDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 Set-Location $baseDir
 
 $services = @(
-    @{Name="Usuários"; Path="user_microsservice\usuarios"},
-    @{Name="Pagamento"; Path="spring.boot.ms.pagamento"},
-    @{Name="Notificação"; Path="AV3_catalogolivro_notification"},
-    @{Name="Catálogo"; Path="catalogo_livros"}
+    @{Name="Usuários"; Path="./microservicos/usuarios"},
+    @{Name="Pagamento"; Path="./microservicos/pagamento"},
+    @{Name="Notificação"; Path="./microservicos/notificacao"},
+    @{Name="Catálogo"; Path="./microservicos/livros"}
 )
 
 $success = $true
