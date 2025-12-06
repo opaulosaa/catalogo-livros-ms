@@ -3,8 +3,8 @@ services:
   - type: web
     name: livraria-frontend
     env: docker
-    context: frontend  # Atenção: Caminho para a pasta do package.json
-    dockerfilePath: frontend/Dockerfile
+    context: ./frontend  # Atenção: Caminho para a pasta do package.json
+    dockerfilePath: ./frontend/Dockerfile
     plan: free
     envVars:
       - key: VITE_API_USERS
