@@ -10,13 +10,13 @@ services:
       # O Render não gera URL pública no build.
       # Você atualizará estes valores no Dashboard DEPOIS do deploy.
       - key: VITE_API_USERS
-        value: "https://URL_DO_MS_USUARIOS_AQUI"
+        value: "https://ms-usuarios-8nb7.onrender.com"
       - key: VITE_API_CATALOG
-        value: "https://URL_DO_MS_CATALOGO_AQUI"
+        value: "https://ms-catalogo-s348.onrender.com"
       - key: VITE_API_PAYMENT
-        value: "https://URL_DO_MS_PAGAMENTO_AQUI"
+        value: "https://ms-pagamento.onrender.com"
       - key: VITE_API_NOTIFICATION
-        value: "https://URL_DO_MS_NOTIFICACAO_AQUI"
+        value: "https://ms-notificacao.onrender.com"
 
   # 2. Usuários (Porta 8081)
   - type: web
