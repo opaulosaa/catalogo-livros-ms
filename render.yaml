@@ -7,8 +7,8 @@ services:
     dockerfilePath: ./frontend/Dockerfile
     plan: free
     envVars:
-      # O Render não fornece URL pública no build.
-      # Você deverá atualizar estes valores no Dashboard após o deploy.
+      # O Render não gera URL pública no build.
+      # Você atualizará estes valores no Dashboard DEPOIS do deploy.
       - key: VITE_API_USERS
         value: "https://URL_DO_MS_USUARIOS_AQUI"
       - key: VITE_API_CATALOG
@@ -44,7 +44,7 @@ services:
         fromService:
           type: web
           name: ms-usuarios
-          property: host # <--- CORRIGIDO: Usa nome interno
+          property: host # <--- CORRIGIDO: Usa o nome interno
       - key: PAGAMENTO_HOST
         fromService:
           type: web
