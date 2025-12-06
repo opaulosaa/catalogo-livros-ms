@@ -1,15 +1,9 @@
--- Script de inicialização dos bancos de dados
--- Este script cria os databases necessários para cada microsserviço
+-- Script de inicialização UNIFICADO
+-- Cria um único banco de dados para todos os serviços
 
-CREATE DATABASE IF NOT EXISTS usuarios_db;
-CREATE DATABASE IF NOT EXISTS livros_db;
-CREATE DATABASE IF NOT EXISTS pagamento_db;
-CREATE DATABASE IF NOT EXISTS notificacao_db;
+CREATE DATABASE IF NOT EXISTS livraria_db;
 
--- Conceder permissões (opcional, root já tem todas)
-GRANT ALL PRIVILEGES ON usuarios_db.* TO 'root'@'%';
-GRANT ALL PRIVILEGES ON livros_db.* TO 'root'@'%';
-GRANT ALL PRIVILEGES ON pagamento_db.* TO 'root'@'%';
-GRANT ALL PRIVILEGES ON notificacao_db.* TO 'root'@'%';
+-- Conceder permissões
+GRANT ALL PRIVILEGES ON livraria_db.* TO 'root'@'%';
 
 FLUSH PRIVILEGES;
