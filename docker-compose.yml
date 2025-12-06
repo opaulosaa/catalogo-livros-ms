@@ -21,7 +21,7 @@ services:
 
   # Serviço de Usuários
   usuarios:
-    build: ./microservicos/user_microsservice/usuarios
+    build: ./microservicos/usuarios
     container_name: usuarios-service
     ports:
       - "8081:8081"
@@ -37,7 +37,7 @@ services:
 
   # Serviço de Pagamento
   pagamento:
-    build: ./microservicos/spring.boot.ms.pagamento
+    build: ./microservicos/pagamento
     container_name: pagamento-service
     ports:
       - "8082:8082"
@@ -54,7 +54,7 @@ services:
 
   # Serviço de Notificação
   notification:
-    build: ./microservicos/AV3_catalogolivro_notification
+    build: ./microservicos/notificacao
     container_name: notification-service
     ports:
       - "8083:8083"
@@ -71,7 +71,7 @@ services:
 
   # Serviço de Catálogo de Livros
   catalogo:
-    build: ./microservicos/catalogo_livros
+    build: ./microservicos/livros
     container_name: catalogo-service
     ports:
       - "8084:8084"
