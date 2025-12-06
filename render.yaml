@@ -23,8 +23,8 @@ services:
     name: ms-usuarios
     env: docker
     # REMOVI O "/usuarios" DO FINAL DAS DUAS LINHAS ABAIXO:
-    dockerContext: ./microservicos/user_microsservice
-    dockerfilePath: ./microservicos/user_microsservice/Dockerfile
+    dockerContext: ./microservicos/usuarios
+    dockerfilePath: ./microservicos/usuarios/Dockerfile
     plan: free
     envVars:
       - key: SERVER_PORT
@@ -36,8 +36,8 @@ services:
   - type: web
     name: ms-catalogo
     env: docker
-    dockerContext: ./microservicos/catalogo_livros
-    dockerfilePath: ./microservicos/catalogo_livros/Dockerfile
+    dockerContext: ./microservicos/livros
+    dockerfilePath: ./microservicos/livros/Dockerfile
     plan: free
     envVars:
       - key: SERVER_PORT
@@ -57,8 +57,8 @@ services:
   - type: web
     name: ms-pagamento
     env: docker
-    dockerContext: ./microservicos/spring.boot.ms.pagamento
-    dockerfilePath: ./microservicos/spring.boot.ms.pagamento/Dockerfile
+    dockerContext: ./microservicos/pagamento
+    dockerfilePath: ./microservicos/pagamento/Dockerfile
     plan: free
     envVars:
       - key: SERVER_PORT
@@ -73,8 +73,8 @@ services:
   - type: web
     name: ms-notificacao
     env: docker
-    dockerContext: ./microservicos/AV3_catalogolivro_notification
-    dockerfilePath: ./microservicos/AV3_catalogolivro_notification/Dockerfile
+    dockerContext: ./microservicos/notificacao
+    dockerfilePath: ./microservicos/notificacao/Dockerfile
     plan: free
     envVars:
       - key: SERVER_PORT
