@@ -1,0 +1,78 @@
+services:
+  # 1. Frontend
+  - type: web
+    name: livraria-frontend
+    env: docker
+    context: ./frontend/frontend  # Atenção: Caminho para a pasta do package.json
+    dockerfilePath: ./frontend/frontend/Dockerfile
+    plan: free
+    envVars:
+      - key: VITE_API_USERS
+        fromService: ms-usuarios
+        property: url
+      - key: VITE_API_CATALOG
+        fromService: ms-catalogo
+        property: url
+      - key: VITE_API_PAYMENT
+        fromService: ms-pagamento
+        property: url
+      - key: VITE_API_NOTIFICATION
+        fromService: ms-notificacao
+        property: url
+
+  # 2. Usuários
+  - type: web
+    name: ms-usuarios
+    env: docker
+    context: ./microservicos/user_microsservice/usuarios
+    dockerfilePath: ./microservicos/user_microsservice/usuarios/Dockerfile
+    plan: free
+    envVars:
+      - key: SERVER_PORT
+        value: 8080
+      # Adicione aqui suas variáveis de banco de dados (SPRING_DATASOURCE_URL, etc)
+
+  # 3. Catálogo
+  - type: web
+    name: ms-catalogo
+    env: docker
+    context: ./microservicos/catalogo_livros
+    dockerfilePath: ./microservicos/catalogo_livros/Dockerfile
+    plan: free
+    envVars:
+      - key: SERVER_PORT
+        value: 8080
+      - key: USUARIOS_HOST
+        fromService: ms-usuarios
+        property: url
+      - key: PAGAMENTO_HOST
+        fromService: ms-pagamento
+        property: url
+
+  # 4. Pagamento
+  - type: web
+    name: ms-pagamento
+    env: docker
+    context: ./microservicos/spring.boot.ms.pagamento
+    dockerfilePath: ./microservicos/spring.boot.ms.pagamento/Dockerfile
+    plan: free
+    envVars:
+      - key: SERVER_PORT
+        value: 8080
+      - key: NOTIFICACAO_HOST
+        fromService: ms-notificacao
+        property: url
+
+  # 5. Notificação
+  - type: web
+    name: ms-notificacao
+    env: docker
+    context: ./microservicos/AV3_catalogolivro_notification
+    dockerfilePath: ./microservicos/AV3_catalogolivro_notification/Dockerfile
+    plan: free
+    envVars:
+      - key: SERVER_PORT
+        value: 8080
+      - key: USUARIOS_HOST
+        fromService: ms-usuarios
+        property: url
